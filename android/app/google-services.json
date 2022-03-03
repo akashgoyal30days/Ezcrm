@@ -1,0 +1,115 @@
+{
+  "project_info": {
+    "project_number": "759888820518",
+    "firebase_url": "https://ezlms-263705.firebaseio.com",
+    "project_id": "ezlms-263705",
+    "storage_bucket": "ezlms-263705.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759888820518:android:159dbeef1bc309067629e7",
+        "android_client_info": {
+          "package_name": "com.in30days.ezcrm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759888820518-bifl0turgp1ssjdvsa151mlacv7jnm8o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.in30days.ezcrm",
+            "certificate_hash": "1fd15b277c043463a3fe6050b4275931f022486c"
+          }
+        },
+        {
+          "client_id": "759888820518-qk57u213avj4gksj1mou0kobdu666k3a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.in30days.ezcrm",
+            "certificate_hash": "436e9b3c373d763eab83ba152af452ebfc88f8de"
+          }
+        },
+        {
+          "client_id": "759888820518-vvand3350cck9nntl6suu26634bq8tbd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.in30days.ezcrm",
+            "certificate_hash": "f7d5205352eed423132cb4d9a43d4f0dd07f2586"
+          }
+        },
+        {
+          "client_id": "759888820518-t9prj70mcf0ipgn89hcfcttet5v3s393.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAswzUGL1OoxiM6itO4u2Cqsn9s_rRKro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759888820518-gvsi960puaicnjcvg3phq6liri2jenvl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "759888820518-0lq9juidhkofu58d2r082thqc5no7nhm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.in30days.ezcrm"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759888820518:android:27f964339ce597437629e7",
+        "android_client_info": {
+          "package_name": "com.in30days.ezlms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759888820518-5098cu5ei7hc0mfpvvi479dtdt3rpu5v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.in30days.ezlms",
+            "certificate_hash": "436e9b3c373d763eab83ba152af452ebfc88f8de"
+          }
+        },
+        {
+          "client_id": "759888820518-t9prj70mcf0ipgn89hcfcttet5v3s393.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAswzUGL1OoxiM6itO4u2Cqsn9s_rRKro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759888820518-gvsi960puaicnjcvg3phq6liri2jenvl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "759888820518-0lq9juidhkofu58d2r082thqc5no7nhm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.in30days.ezcrm"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
