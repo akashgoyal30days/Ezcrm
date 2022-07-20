@@ -16,7 +16,6 @@ import 'package:zoho_crm_clone/screens/add_followup.dart';
 import 'package:zoho_crm_clone/screens/add_leads.dart';
 import 'package:zoho_crm_clone/screens/change%20pass.dart';
 import 'package:zoho_crm_clone/screens/contact_us.dart';
-import 'package:zoho_crm_clone/screens/contacts.dart';
 import 'package:zoho_crm_clone/screens/feedback.dart';
 import 'package:zoho_crm_clone/screens/search_query.dart';
 import 'feedback.dart';
@@ -24,7 +23,6 @@ import 'Leads.dart';
 import 'package:intl/intl.dart';
 
 import 'followup.dart';
-
 
 class Dashboard extends StatefulWidget {
   Dashboard({Key key, this.title}) : super(key: key);
@@ -38,7 +36,7 @@ class _DashboardState extends State<Dashboard> {
   double _sigmaX = 0.0; // from 0-10
   double _sigmaY = 0.0; // from 0-10
   double _opacity = 0.1;
-  Future show(){
+  Future show() {
     setState(() {
       isopen = true;
     });
@@ -63,15 +61,35 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     Spacer(),
                     Container(
-                      child: Image.asset('assets/images/loading.gif',width: MediaQuery.of(context).size.width/2,height: MediaQuery.of(context).size.height/5,),
+                      child: Image.asset(
+                        'assets/images/loading.gif',
+                        width: MediaQuery.of(context).size.width / 2,
+                        height: MediaQuery.of(context).size.height / 5,
+                      ),
                     ),
                     Padding(
                         padding: EdgeInsets.only(top: 20.0),
                         child: Column(
                           children: [
-                            Text("Hold On!",style: TextStyle(fontSize: MediaQuery.of(context).size.width/10,color: Colors.black, letterSpacing: 1),),
-                            SizedBox(height: 5,),
-                            Text("Fetching your details",style: TextStyle(fontSize: MediaQuery.of(context).size.width/18,color: Colors.black, letterSpacing: 1),),
+                            Text(
+                              "Hold On!",
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 10,
+                                  color: Colors.black,
+                                  letterSpacing: 1),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Fetching your details",
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 18,
+                                  color: Colors.black,
+                                  letterSpacing: 1),
+                            ),
                           ],
                         )),
                     Spacer(),
@@ -80,7 +98,9 @@ class _DashboardState extends State<Dashboard> {
               );
             }),
           );
-        });}
+        });
+  }
+
   bool dark = true;
   var currdt = DateTime.now();
   final _currentDate = DateTime.now();
@@ -92,7 +112,7 @@ class _DashboardState extends State<Dashboard> {
   String usertype = '';
   String clientname = '';
   String comapnyname = '';
-  Future Logout(BuildContext context){
+  Future Logout(BuildContext context) {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(0.0)),
@@ -110,60 +130,80 @@ class _DashboardState extends State<Dashboard> {
                   bottom: MediaQuery.of(context).viewInsets.bottom,
                 ),
                 color: Colors.red,
-                height: MediaQuery.of(context).size.height/5,
+                height: MediaQuery.of(context).size.height / 5,
                 child: Column(
                   children: [
                     Spacer(),
                     Align(
                       alignment: Alignment.center,
-                      child: Text('Are you sure you want to Log Out?',
-                        style: TextStyle(color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width/20),),
+                      child: Text(
+                        'Are you sure you want to Log Out?',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.width / 20),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.width/10,),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 10,
+                    ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(8,0,8,0),
+                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Spacer(),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               logOut(context);
                             },
                             child: Row(
                               children: [
-
                                 Container(
-                                    width: MediaQuery.of(context).size.width/3,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
                                     decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.white)
-                                    ),
+                                        border:
+                                            Border.all(color: Colors.white)),
                                     child: Center(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text('Yes',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
+                                        child: Text(
+                                          'Yes',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
                                       ),
                                     )),
                               ],
                             ),
                           ),
-                          SizedBox(width: MediaQuery.of(context).size.width/10,),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 10,
+                          ),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.pop(context);
                             },
                             child: Row(
                               children: [
                                 Container(
-                                    width: MediaQuery.of(context).size.width/3,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
                                     decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.white)
-                                    ),
+                                        border:
+                                            Border.all(color: Colors.white)),
                                     child: Center(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text('No',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
+                                        child: Text(
+                                          'No',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
                                       ),
                                     )),
                               ],
@@ -181,7 +221,8 @@ class _DashboardState extends State<Dashboard> {
           );
         });
   }
-  Future showupdate(BuildContext context){
+
+  Future showupdate(BuildContext context) {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(0.0)),
@@ -199,39 +240,51 @@ class _DashboardState extends State<Dashboard> {
                   bottom: MediaQuery.of(context).viewInsets.bottom,
                 ),
                 color: Colors.black,
-                height: MediaQuery.of(context).size.height/5,
+                height: MediaQuery.of(context).size.height / 5,
                 child: Column(
                   children: [
                     Spacer(),
                     Align(
                       alignment: Alignment.center,
-                      child: Text('EZCRM Update available',
-                        style: TextStyle(color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width/20),),
+                      child: Text(
+                        'EZCRM Update available',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.width / 20),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.width/10,),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 10,
+                    ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(8,0,8,0),
+                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            onTap: (){
-                              LaunchReview.launch(androidAppId: "com.in30days.ezcrm",
-                                 );
+                            onTap: () {
+                              LaunchReview.launch(
+                                androidAppId: "com.in30days.ezcrm",
+                              );
                             },
                             child: Row(
                               children: [
-
                                 Container(
-                                    width: MediaQuery.of(context).size.width/3,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
                                     decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.white)
-                                    ),
+                                        border:
+                                            Border.all(color: Colors.white)),
                                     child: Center(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text('Update Now',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
+                                        child: Text(
+                                          'Update Now',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
                                       ),
                                     )),
                               ],
@@ -248,17 +301,15 @@ class _DashboardState extends State<Dashboard> {
           );
         });
   }
- // bool updatescreen = false;
+  // bool updatescreen = false;
 
   Future getupdate() async {
     var uri = "${customurl}/version.php";
-    final response = await http.get(
-        uri,
-        headers: <String, String>{
-          'Accept': 'application/json',
-        });
+    final response = await http.get(uri, headers: <String, String>{
+      'Accept': 'application/json',
+    });
     var convertedDatatoJson = json.decode(response.body);
-    if(convertedDatatoJson.toString() != version.toString()){
+    if (convertedDatatoJson.toString() != version.toString()) {
       showupdate(context);
     }
     print(convertedDatatoJson);
@@ -266,7 +317,7 @@ class _DashboardState extends State<Dashboard> {
     //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyProfileClickedEvent);
   }
 
-  Future UpdateLeadLoader(){
+  Future UpdateLeadLoader() {
     setState(() {
       // isopen = true;
     });
@@ -291,15 +342,35 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     Spacer(),
                     Container(
-                      child: Image.asset('assets/images/updating.gif',width: MediaQuery.of(context).size.width/2,height: MediaQuery.of(context).size.height/5,),
+                      child: Image.asset(
+                        'assets/images/updating.gif',
+                        width: MediaQuery.of(context).size.width / 2,
+                        height: MediaQuery.of(context).size.height / 5,
+                      ),
                     ),
                     Padding(
                         padding: EdgeInsets.only(top: 20.0),
                         child: Column(
                           children: [
-                            Text("Hold On!",style: TextStyle(fontSize: MediaQuery.of(context).size.width/10,color: Colors.black, letterSpacing: 1),),
-                            SizedBox(height: 5,),
-                            Text("Processing your request",style: TextStyle(fontSize: MediaQuery.of(context).size.width/18,color: Colors.black, letterSpacing: 1),),
+                            Text(
+                              "Hold On!",
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 10,
+                                  color: Colors.black,
+                                  letterSpacing: 1),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Processing your request",
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 18,
+                                  color: Colors.black,
+                                  letterSpacing: 1),
+                            ),
                           ],
                         )),
                     Spacer(),
@@ -308,9 +379,11 @@ class _DashboardState extends State<Dashboard> {
               );
             }),
           );
-        });}
-  _makingPhoneCall(String number) async{
-   // const number = '08592119XXXX'; //set the number here
+        });
+  }
+
+  _makingPhoneCall(String number) async {
+    // const number = '08592119XXXX'; //set the number here
     bool res = await FlutterPhoneDirectCaller.callNumber(number);
   }
 /*  _makingPhoneCall(String number) async {
@@ -323,35 +396,36 @@ class _DashboardState extends State<Dashboard> {
   }*/
 
   Future Retrivedetails() async {
-
     SharedPreferences preferencename = await SharedPreferences.getInstance();
     SharedPreferences preferenceuid = await SharedPreferences.getInstance();
-    SharedPreferences preferenceusertype = await SharedPreferences.getInstance();
+    SharedPreferences preferenceusertype =
+        await SharedPreferences.getInstance();
     SharedPreferences preferenceclient = await SharedPreferences.getInstance();
     SharedPreferences preferencecompany = await SharedPreferences.getInstance();
-   setState(() {
-     username = preferencename.getString('name');
-     userid = preferenceuid.getString('user_id');
-     usertype = preferenceusertype.getString('user_type');
-     clientname = preferenceclient.getString('client_name');
-     comapnyname = preferencecompany.getString('company');
-   });
-   print(usertype);
-   hitfollowup(userid, clientname, '${currdt.year}-${_monthFormatter.format(currdt)}-${currdt.day}');
+    setState(() {
+      username = preferencename.getString('name');
+      userid = preferenceuid.getString('user_id');
+      usertype = preferenceusertype.getString('user_type');
+      clientname = preferenceclient.getString('client_name');
+      comapnyname = preferencecompany.getString('company');
+    });
+    print(usertype);
+    hitfollowup(userid, clientname,
+        '${currdt.year}-${_monthFormatter.format(currdt)}-${currdt.day}');
   }
-  var followdata ;
+
+  var followdata;
   var list_follow = [];
   var isopen = false;
 
-
   Future hitfollowup(String uid, String client, String date) async {
     followdata = await fetchfollow(uid, client, date);
-    if(debug == 'yes') {
+    if (debug == 'yes') {
       print(followdata);
     }
     if (followdata.containsKey('status')) {
       if (followdata['status'] == true) {
-        if(isopen == true) {
+        if (isopen == true) {
           Future.delayed(const Duration(seconds: 2), () {
             Navigator.pop(context);
           });
@@ -359,44 +433,45 @@ class _DashboardState extends State<Dashboard> {
         setState(() {
           list_follow = followdata['followps'];
         });
-        if(debug=='yes') {
+        if (debug == 'yes') {
           print(list_follow);
         }
-      }
-    else{
-        if(isopen == true) {
-          Future.delayed(const Duration(seconds: 2), ()
-          {
+      } else {
+        if (isopen == true) {
+          Future.delayed(const Duration(seconds: 2), () {
             Navigator.pop(context);
-          }); }
+          });
+        }
       }
-    }
-    else{
-      if(isopen == true) {
-        Future.delayed(const Duration(seconds: 2), ()
-        {
+    } else {
+      if (isopen == true) {
+        Future.delayed(const Duration(seconds: 2), () {
           Navigator.pop(context);
-        }); }
+        });
+      }
     }
   }
-  void daction(){
+
+  void daction() {
     Navigator.pop(context);
   }
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
     package();
     getupdate();
     Retrivedetails();
   }
+
   String version = '';
-  package() async{
+  package() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     setState(() {
       version = packageInfo.version;
     });
-
   }
+
   var outputFormat = DateFormat('dd/MM/yyyy hh:mm:ss a');
   var outputFormatdiff = DateFormat('dd/MM/yyyy hh:mm a');
   var diffstart;
@@ -417,7 +492,7 @@ class _DashboardState extends State<Dashboard> {
         physics: BouncingScrollPhysics(),
         children: [
           GestureDetector(
-            onTap: (){
+            onTap: () {
               print(_dayFormatter.format(date));
               print(_monthFormatter.format(date));
               print(_yearFormatter.format(date));
@@ -428,17 +503,21 @@ class _DashboardState extends State<Dashboard> {
                 syear = _yearFormatter.format(date).toString();
               });
               show();
-              hitfollowup(userid, clientname, '${_yearFormatter.format(date)}-${_monthFormatter.format(date)}-${_dayFormatter.format(date)}');
+              hitfollowup(userid, clientname,
+                  '${_yearFormatter.format(date)}-${_monthFormatter.format(date)}-${_dayFormatter.format(date)}');
             },
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(10,0,5,0),
+              padding: const EdgeInsets.fromLTRB(10, 0, 5, 0),
               child: Container(
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent)
-                  ),
+                      border: Border.all(color: Colors.blueAccent)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(child: Text('${_dayFormatter.format(date)}', style: TextStyle(color: Colors.white),)),
+                    child: Center(
+                        child: Text(
+                      '${_dayFormatter.format(date)}',
+                      style: TextStyle(color: Colors.white),
+                    )),
                   )),
             ),
           ),
@@ -446,7 +525,7 @@ class _DashboardState extends State<Dashboard> {
       ));
     }
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
         if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
@@ -465,20 +544,25 @@ class _DashboardState extends State<Dashboard> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Colors.blue,Colors.indigo,],
+                colors: [
+                  Colors.blue,
+                  Colors.indigo,
+                ],
               ),
             ),
           ),
           title: Text('Home'),
           centerTitle: false,
           actions: [
-           // IconButton(icon: Icon(Icons.search), onPressed: (){})
+            // IconButton(icon: Icon(Icons.search), onPressed: (){})
           ],
         ),
         drawer: Drawer(
           child: Column(
             children: [
-              SizedBox(height: 50,),
+              SizedBox(
+                height: 50,
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
                 child: Container(
@@ -487,35 +571,41 @@ class _DashboardState extends State<Dashboard> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width*0.2,
+                        width: MediaQuery.of(context).size.width * 0.2,
                         height: 100,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              image: NetworkImage('https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-                              fit: BoxFit.fill
-                          ),
+                              image: NetworkImage(
+                                  'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+                              fit: BoxFit.fill),
                           border: Border.all(
                             color: Colors.white,
                             width: 2.0,
                           ),
                         ),
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text(comapnyname,
+                          Text(
+                            comapnyname,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: MediaQuery.of(context).size.width/20
-                            ),),
-                          Text(username,
+                                fontSize:
+                                    MediaQuery.of(context).size.width / 20),
+                          ),
+                          Text(
+                            username,
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontSize: MediaQuery.of(context).size.width/30
-                            ),),
+                                fontSize:
+                                    MediaQuery.of(context).size.width / 30),
+                          ),
                         ],
                       ),
                       Spacer(),
@@ -534,11 +624,18 @@ class _DashboardState extends State<Dashboard> {
                 flex: 1,
                 child: ListView(children: [
                   ListTile(
-                    leading: Icon(Icons.home, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Home",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.home,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Home",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                     },
@@ -546,73 +643,102 @@ class _DashboardState extends State<Dashboard> {
                     selectedTileColor: Colors.blue.withOpacity(0.5),
                     minVerticalPadding: 0,
                     enableFeedback: true,
-
                   ),
                   ListTile(
-                    leading: Icon(Icons.search, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Search Query",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.search,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Search Query",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                            return S_Query();
-                          }));
+                        return S_Query();
+                      }));
                     },
-                   // selected: true,
+                    // selected: true,
                     selectedTileColor: Colors.blue.withOpacity(0.5),
                     minVerticalPadding: 0,
                     enableFeedback: true,
-
                   ),
                   ExpansionTile(
                     //initiallyExpanded: true,
                     maintainState: true,
-                    leading: Icon(Icons.people, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Leads",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.people,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Leads",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                         child: ListTile(
-                          leading: Icon(Icons.people, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
+                          leading: Icon(
+                            Icons.people,
+                            color: Colors.black,
+                            size: MediaQuery.of(context).size.width / 20,
+                          ),
                           //selected: true,
                           selectedTileColor: Colors.blue.withOpacity(0.5),
-                          title: Text("Assigned Leads",
-                            style: TextStyle(color: Colors.black,
-                                fontSize: MediaQuery.of(context).size.width/25,
-                                fontWeight: FontWeight.w300),),
+                          title: Text(
+                            "Assigned Leads",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize:
+                                    MediaQuery.of(context).size.width / 25,
+                                fontWeight: FontWeight.w300),
+                          ),
                           onTap: () {
                             Navigator.of(context).pop();
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {
-                                  return Leads();
-                                }));
+                              return Leads();
+                            }));
                           },
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                         child: ListTile(
-                          leading: Icon(Icons.people, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                          title: Text("Follow Ups",
-                            style: TextStyle(color: Colors.black,
-                                fontSize: MediaQuery.of(context).size.width/25,
-                                fontWeight: FontWeight.w300),),
+                          leading: Icon(
+                            Icons.people,
+                            color: Colors.black,
+                            size: MediaQuery.of(context).size.width / 20,
+                          ),
+                          title: Text(
+                            "Follow Ups",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize:
+                                    MediaQuery.of(context).size.width / 25,
+                                fontWeight: FontWeight.w300),
+                          ),
                           onTap: () {
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {
-                                  return FollowUp();
-                                }));
+                              return FollowUp();
+                            }));
                           },
                         ),
-                      ),],
+                      ),
+                    ],
                   ),
-                 /* ListTile(
+                  /* ListTile(
                     leading: Icon(Icons.person, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
                     title: Text("Contacts",
                       style: TextStyle(color: Colors.black,
@@ -629,31 +755,45 @@ class _DashboardState extends State<Dashboard> {
                     selectedTileColor: Colors.blue.withOpacity(0.5),
                   ),*/
                   ListTile(
-                    leading: Icon(Icons.contact_support, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Contact Us",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.contact_support,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Contact Us",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                            return Contactus();
-                          }));
+                        return Contactus();
+                      }));
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.admin_panel_settings_sharp, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Change Password",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.admin_panel_settings_sharp,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Change Password",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                            return ChangePass();
-                          }));
+                        return ChangePass();
+                      }));
                     },
                   ),
                   Padding(
@@ -674,25 +814,39 @@ class _DashboardState extends State<Dashboard> {
                     },
                   ),*/
                   ListTile(
-                    leading: Icon(Icons.messenger, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Feedback",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.messenger,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Feedback",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                            return Feedbacks();
-                          }));
+                        return Feedbacks();
+                      }));
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.logout, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Log Out",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.logout,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Log Out",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Logout(context);
@@ -702,125 +856,340 @@ class _DashboardState extends State<Dashboard> {
               ),
               Align(
                 alignment: Alignment.center,
-                child: Text('Made with love',
+                child: Text(
+                  'Made with love',
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: MediaQuery.of(context).size.width/30,
-                  ),),
+                    fontSize: MediaQuery.of(context).size.width / 30,
+                  ),
+                ),
               ),
-
               Align(
                 alignment: Alignment.center,
-                child: Text('In India',
+                child: Text(
+                  'In India',
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: MediaQuery.of(context).size.width/30,
-                  ),),
+                    fontSize: MediaQuery.of(context).size.width / 30,
+                  ),
+                ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
             ],
           ),
         ),
         body: GestureDetector(
           //onTap: () => _scaffoldKey.currentState.openDrawer(),
-            onVerticalDragEnd : (DragEndDetails details) {
-              _scaffoldKey.currentState.openDrawer();
-            },
+          onVerticalDragEnd: (DragEndDetails details) {
+            _scaffoldKey.currentState.openDrawer();
+          },
           child: Container(
             color: Colors.grey.withOpacity(0.2),
             child: Column(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height/5,
+                  height: MediaQuery.of(context).size.height / 5,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [Colors.indigo,Colors.black,],
+                      colors: [
+                        Colors.indigo,
+                        Colors.black,
+                      ],
                     ),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Image.asset('assets/images/plogo.png',
-                      height: 100,),
-                      if(which_date == 'today')Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Follow ups for ${currdt.day} ', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 1)
-                            Text('Jan', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 2)
-                            Text('Feb', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 3)
-                            Text('March', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 4)
-                            Text('April', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 5)
-                            Text('May', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 6)
-                            Text('June', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 7)
-                            Text('July', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 8)
-                            Text('Aug', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 9)
-                            Text('Sep', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 10)
-                            Text('Oct', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 11)
-                            Text('Nov', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(currdt.month == 12)
-                            Text('Dec', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          SizedBox(width: 5,),
-                          Text('${currdt.year}', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                        ],
+                      Image.asset(
+                        'assets/images/plogo.png',
+                        height: 100,
                       ),
-                      if(which_date == 'selected')Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Follow ups for ${sday} ', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '01')
-                            Text('Jan', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '02')
-                            Text('Feb', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '03')
-                            Text('March', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '04')
-                            Text('April', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '05')
-                            Text('May', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '06')
-                            Text('June', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '07')
-                            Text('July', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '08')
-                            Text('Aug', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '09')
-                            Text('Sep', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '10')
-                            Text('Oct', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '11')
-                            Text('Nov', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          if(smonth == '12')
-                            Text('Dec', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                          SizedBox(width: 5,),
-                          Text('${syear}', style: TextStyle(fontSize: MediaQuery.of(context).size.width/25,color: Colors.white, fontWeight: FontWeight.w300),),
-                        ],
-                      ),
+                      if (which_date == 'today')
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Follow ups for ${currdt.day} ',
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 25,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                            if (currdt.month == 1)
+                              Text(
+                                'Jan',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 2)
+                              Text(
+                                'Feb',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 3)
+                              Text(
+                                'March',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 4)
+                              Text(
+                                'April',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 5)
+                              Text(
+                                'May',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 6)
+                              Text(
+                                'June',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 7)
+                              Text(
+                                'July',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 8)
+                              Text(
+                                'Aug',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 9)
+                              Text(
+                                'Sep',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 10)
+                              Text(
+                                'Oct',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 11)
+                              Text(
+                                'Nov',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (currdt.month == 12)
+                              Text(
+                                'Dec',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              '${currdt.year}',
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 25,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          ],
+                        ),
+                      if (which_date == 'selected')
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Follow ups for ${sday} ',
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 25,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                            if (smonth == '01')
+                              Text(
+                                'Jan',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '02')
+                              Text(
+                                'Feb',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '03')
+                              Text(
+                                'March',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '04')
+                              Text(
+                                'April',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '05')
+                              Text(
+                                'May',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '06')
+                              Text(
+                                'June',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '07')
+                              Text(
+                                'July',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '08')
+                              Text(
+                                'Aug',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '09')
+                              Text(
+                                'Sep',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '10')
+                              Text(
+                                'Oct',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '11')
+                              Text(
+                                'Nov',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            if (smonth == '12')
+                              Text(
+                                'Dec',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              '${syear}',
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 25,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          ],
+                        ),
                       Align(
                         alignment: Alignment.center,
                         child: TextButton(
-                          onPressed: (){
+                          onPressed: () {
                             UpdateLeadLoader();
                             setState(() {
                               isopen = true;
                             });
-                            hitfollowup(userid, clientname, '${currdt.year}-${_monthFormatter.format(currdt)}-${currdt.day}');
+                            hitfollowup(userid, clientname,
+                                '${currdt.year}-${_monthFormatter.format(currdt)}-${currdt.day}');
                           },
-                          child: Text('Refresh',
-                          style: TextStyle(color: Colors.white),),
+                          child: Text(
+                            'Refresh',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
                       /*Padding(
@@ -848,116 +1217,209 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height-MediaQuery.of(context).size.height/3,
+                  height: MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).size.height / 3,
                   color: Colors.transparent,
-                  child: list_follow.isNotEmpty ?
-                  ListView.builder(
-                      itemCount: list_follow.isEmpty ? 0 : list_follow.length,
-                      itemBuilder: (BuildContext context, int  index){
-                        return Dismissible(
-                          background: Container(
-                            color: Colors.green.withOpacity(0.8),
-                            child: Padding(
-                              padding: const EdgeInsets.all(15),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.phone, color: Colors.white,
-                                  size: 30,),
-                                  SizedBox(width: 10,),
-                                  Text('Take followup', style: TextStyle(color: Colors.white,
-                                      fontSize: 25, fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                          ),
-                          direction: DismissDirection.startToEnd,
-                          key: Key(list_follow[index].toString()),
-                          confirmDismiss: (DismissDirection direction) async {
-                            _makingPhoneCall(list_follow[index]['phone'].trim());
-                          },
-                          child: Container(
-                            //height: 100,
-                            width: MediaQuery.of(context).size.width,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Card(
-                                elevation: 1,
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8, right: 8, top: 5, bottom: 2),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text('Name:',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),),
-                                          Text(list_follow[index]['full_name'],style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),),
-                                        ],
+                  child: list_follow.isNotEmpty
+                      ? ListView.builder(
+                          itemCount:
+                              list_follow.isEmpty ? 0 : list_follow.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Dismissible(
+                              background: Container(
+                                color: Colors.green.withOpacity(0.8),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.phone,
+                                        color: Colors.white,
+                                        size: 30,
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8, right: 8, top: 5, bottom: 2),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text('Email:',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),),
-                                          Text(list_follow[index]['email'],style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),),
-                                        ],
+                                      SizedBox(
+                                        width: 10,
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8, right: 8, top: 5, bottom: 2),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text('Remarks:',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),),
-                                          Text(list_follow[index]['followup_remark'],style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text('Followup Date:',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),),
-                                          Text('${outputFormat.format(DateTime.parse(list_follow[index]['followup_date']))}',style: TextStyle(fontSize: 15,color: Colors.black, fontWeight: FontWeight.bold),)
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                                      Text('Take followup',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
                                 ),
                               ),
+                              direction: DismissDirection.startToEnd,
+                              key: Key(list_follow[index].toString()),
+                              confirmDismiss:
+                                  (DismissDirection direction) async {
+                                _makingPhoneCall(
+                                    list_follow[index]['phone'].trim());
+                              },
+                              child: Container(
+                                //height: 100,
+                                width: MediaQuery.of(context).size.width,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Card(
+                                    elevation: 1,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8,
+                                              right: 8,
+                                              top: 5,
+                                              bottom: 2),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Name:',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(
+                                                list_follow[index]['full_name'],
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8,
+                                              right: 8,
+                                              top: 5,
+                                              bottom: 2),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Email:',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(
+                                                list_follow[index]['email'],
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8,
+                                              right: 8,
+                                              top: 5,
+                                              bottom: 2),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Remarks:',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(
+                                                list_follow[index]
+                                                    ['followup_remark'],
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Followup Date:',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(
+                                                '${outputFormat.format(DateTime.parse(list_follow[index]['followup_date']))}',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          })
+                      : Center(
+                          child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Spacer(),
+                            Icon(
+                              Icons.web,
+                              size: MediaQuery.of(context).size.width / 3,
+                              color: Colors.grey.withOpacity(0.4),
                             ),
-                          ),
-                        );
-                      }):Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Spacer(),
-                        Icon(Icons.web, size: MediaQuery.of(context).size.width/3,
-                        color: Colors.grey.withOpacity(0.4),),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text('You have no activities for this day',
-                          style: TextStyle(color: Colors.grey,
-                          fontSize: MediaQuery.of(context).size.width/30),),
-                        ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TextButton(
-                                child: Text('+ Follow Up', style: TextStyle(fontSize: MediaQuery.of(context).size.width/30),),
-                                onPressed: (){
-                                  Navigator.pushReplacement(context,
-                                      MaterialPageRoute(builder: (context) {
+                            Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'You have no activities for this day',
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 30),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                    child: Text(
+                                      '+ Follow Up',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              30),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pushReplacement(context,
+                                          MaterialPageRoute(builder: (context) {
                                         return AddFollow();
                                       }));
-                                },
-                              ),
-                             /* TextButton(
+                                    },
+                                  ),
+                                  /* TextButton(
                                 child: Text('+ Contacts', style: TextStyle(fontSize: MediaQuery.of(context).size.width/30),),
                                 onPressed: (){
                                   Navigator.pushReplacement(context,
@@ -966,23 +1428,28 @@ class _DashboardState extends State<Dashboard> {
                                       }));
                                 },
                               ),*/
-                              TextButton(
-                                child: Text('+ Leads', style: TextStyle(fontSize: MediaQuery.of(context).size.width/30),),
-                                onPressed: (){
-                                  Navigator.pushReplacement(context,
-                                      MaterialPageRoute(builder: (context) {
+                                  TextButton(
+                                    child: Text(
+                                      '+ Leads',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              30),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pushReplacement(context,
+                                          MaterialPageRoute(builder: (context) {
                                         return AddLeads();
                                       }));
-                                },
-                              )
-                            ],
-                          ),
-                        ),
-                        Spacer(),
-                      ],
-                    )
-
-                  ),
+                                    },
+                                  )
+                                ],
+                              ),
+                            ),
+                            Spacer(),
+                          ],
+                        )),
                 )
               ],
             ),
