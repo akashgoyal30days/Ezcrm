@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zoho_crm_clone/ui_view/slider_layout_view.dart';
 

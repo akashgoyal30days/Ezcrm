@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui';
 import 'package:http/http.dart' as http;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
@@ -16,7 +14,6 @@ import 'change pass.dart';
 import 'contact_us.dart';
 import 'dashboard.dart';
 import 'followup.dart';
-
 
 class Feedbacks extends StatefulWidget {
   Feedbacks({Key key, this.title}) : super(key: key);
@@ -41,7 +38,8 @@ class _FeedbacksState extends State<Feedbacks> {
   Future Retrivedetails() async {
     SharedPreferences preferencename = await SharedPreferences.getInstance();
     SharedPreferences preferenceuid = await SharedPreferences.getInstance();
-    SharedPreferences preferenceusertype = await SharedPreferences.getInstance();
+    SharedPreferences preferenceusertype =
+        await SharedPreferences.getInstance();
     SharedPreferences preferenceclient = await SharedPreferences.getInstance();
     SharedPreferences preferencecompany = await SharedPreferences.getInstance();
     setState(() {
@@ -51,33 +49,36 @@ class _FeedbacksState extends State<Feedbacks> {
       clientname = preferenceclient.getString('client_name');
       comapnyname = preferencecompany.getString('company');
     });
-    if(debug=='yes') {
+    if (debug == 'yes') {
       print(usertype);
     }
   }
+
   List files = [];
   var data;
   @override
-  void initState(){
+  void initState() {
     Retrivedetails();
     super.initState();
   }
+
   List<Asset> images = List<Asset>();
   final _formKey = GlobalKey<FormState>();
   String _error = 'Select Images Failed';
   dynamic feedbackController = TextEditingController();
-  getImageFileFromAsset(String path) async{
+  getImageFileFromAsset(String path) async {
     final file = File(path);
 
     return file;
   }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   Widget buildGridView() {
     return GridView.count(
       crossAxisCount: 3,
       children: List.generate(images.length, (index) {
         Asset asset = images[index];
-        if(debug == 'yes') {
+        if (debug == 'yes') {
           print(asset.getByteData(quality: 100));
         }
         return Card(
@@ -95,6 +96,7 @@ class _FeedbacksState extends State<Feedbacks> {
       }),
     );
   }
+
   Future<void> loadAssets() async {
     List<Asset> resultList = List<Asset>();
     String error = 'No Error Detected';
@@ -124,14 +126,16 @@ class _FeedbacksState extends State<Feedbacks> {
       _error = error;
     });
   }
-  Future _upload() async{
-    for (int i = 0; i<images.length; i++){
-      var path2 = await FlutterAbsolutePath.getAbsolutePath(images[i].identifier);
+
+  Future _upload() async {
+    for (int i = 0; i < images.length; i++) {
+      var path2 =
+          await FlutterAbsolutePath.getAbsolutePath(images[i].identifier);
       var file = await getImageFileFromAsset(path2);
       var base64Image = base64Encode(file.readAsBytesSync());
       files.add(base64Image);
     }
-    var urii = "${customurl}/feedback.php";
+    var urii = "$customurl/feedback.php";
     var bodydata = {
       'uid': userid,
       'type': 'feedback_query',
@@ -143,29 +147,31 @@ class _FeedbacksState extends State<Feedbacks> {
       'query': feedbackController.text,
     };
     try {
-      var response = await http.post(
-          urii, body: json.encode(bodydata),
-          headers: <String, String>{
-            'Accept': 'application/json',
-          });
+      var response = await http
+          .post(urii, body: json.encode(bodydata), headers: <String, String>{
+        'Accept': 'application/json',
+      });
       data = json.decode(response.body);
-      if(debug == 'yes') {
+      if (debug == 'yes') {
         print(data);
       }
       if (data['status'] == true) {
         Navigator.pop(context);
-        Toast.show("${'We successfully recorded your feedback'}", context, duration: Toast.LENGTH_LONG, gravity:  Toast.CENTER);
-      }
-      else{
+        Toast.show("${'We successfully recorded your feedback'}", context,
+            duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+      } else {
         Navigator.pop(context);
-        Toast.show("${'failed to record your feedback'}", context, duration: Toast.LENGTH_LONG, gravity:  Toast.CENTER);
+        Toast.show("${'failed to record your feedback'}", context,
+            duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
       }
-    }catch (error) {
+    } catch (error) {
       Navigator.pop(context);
-      Toast.show("${'Oops!! we faced some error, please retry'}", context, duration: Toast.LENGTH_LONG, gravity:  Toast.CENTER);
+      Toast.show("${'Oops!! we faced some error, please retry'}", context,
+          duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
     }
   }
-  Future UpdateLeadLoader(){
+
+  Future UpdateLeadLoader() {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(0.0)),
@@ -187,15 +193,35 @@ class _FeedbacksState extends State<Feedbacks> {
                   children: [
                     Spacer(),
                     Container(
-                      child: Image.asset('assets/images/updating.gif',width: MediaQuery.of(context).size.width/2,height: MediaQuery.of(context).size.height/5,),
+                      child: Image.asset(
+                        'assets/images/updating.gif',
+                        width: MediaQuery.of(context).size.width / 2,
+                        height: MediaQuery.of(context).size.height / 5,
+                      ),
                     ),
                     Padding(
                         padding: EdgeInsets.only(top: 20.0),
                         child: Column(
                           children: [
-                            Text("Hold On!",style: TextStyle(fontSize: MediaQuery.of(context).size.width/10,color: Colors.black, letterSpacing: 1),),
-                            SizedBox(height: 5,),
-                            Text("Processing your request",style: TextStyle(fontSize: MediaQuery.of(context).size.width/18,color: Colors.black, letterSpacing: 1),),
+                            Text(
+                              "Hold On!",
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 10,
+                                  color: Colors.black,
+                                  letterSpacing: 1),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Processing your request",
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 18,
+                                  color: Colors.black,
+                                  letterSpacing: 1),
+                            ),
                           ],
                         )),
                     Spacer(),
@@ -204,8 +230,10 @@ class _FeedbacksState extends State<Feedbacks> {
               );
             }),
           );
-        });}
-  Future Logout(BuildContext context){
+        });
+  }
+
+  Future Logout(BuildContext context) {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(0.0)),
@@ -223,60 +251,80 @@ class _FeedbacksState extends State<Feedbacks> {
                   bottom: MediaQuery.of(context).viewInsets.bottom,
                 ),
                 color: Colors.red,
-                height: MediaQuery.of(context).size.height/5,
+                height: MediaQuery.of(context).size.height / 5,
                 child: Column(
                   children: [
                     Spacer(),
                     Align(
                       alignment: Alignment.center,
-                      child: Text('Are you sure you want to Log Out?',
-                        style: TextStyle(color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width/20),),
+                      child: Text(
+                        'Are you sure you want to Log Out?',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.width / 20),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.width/10,),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 10,
+                    ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(8,0,8,0),
+                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Spacer(),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               logOut(context);
                             },
                             child: Row(
                               children: [
-
                                 Container(
-                                    width: MediaQuery.of(context).size.width/3,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
                                     decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.white)
-                                    ),
+                                        border:
+                                            Border.all(color: Colors.white)),
                                     child: Center(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text('Yes',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
+                                        child: Text(
+                                          'Yes',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
                                       ),
                                     )),
                               ],
                             ),
                           ),
-                          SizedBox(width: MediaQuery.of(context).size.width/10,),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 10,
+                          ),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.pop(context);
                             },
                             child: Row(
                               children: [
                                 Container(
-                                    width: MediaQuery.of(context).size.width/3,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
                                     decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.white)
-                                    ),
+                                        border:
+                                            Border.all(color: Colors.white)),
                                     child: Center(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text('No',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
+                                        child: Text(
+                                          'No',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
                                       ),
                                     )),
                               ],
@@ -294,10 +342,11 @@ class _FeedbacksState extends State<Feedbacks> {
           );
         });
   }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
         if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
@@ -316,31 +365,59 @@ class _FeedbacksState extends State<Feedbacks> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Colors.black,Colors.indigo,],
+                colors: [
+                  Colors.black,
+                  Colors.indigo,
+                ],
               ),
             ),
           ),
-          title: Text('Feedback',
-            style: TextStyle(fontSize: MediaQuery.of(context).size.width/20,
-                fontWeight: FontWeight.w300),),
+          title: Text(
+            'Feedback',
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width / 20,
+                fontWeight: FontWeight.w300),
+          ),
           centerTitle: false,
           actions: [
-            IconButton(icon: Icon(Icons.attach_file, size: MediaQuery.of(context).size.width/18,), onPressed: loadAssets),
-            IconButton(icon: Icon(Icons.send_rounded, size: MediaQuery.of(context).size.width/18,), onPressed: (){
-              if (_formKey.currentState.validate()) {
-                if(images.length != 0)   Toast.show("${'Please wait while we record your feedback'}", context, duration: Toast.LENGTH_LONG, gravity:  Toast.CENTER);
-                else if (images.length == 0)Toast.show("${'Please wait while we record your feedback'}", context, duration: Toast.LENGTH_LONG, gravity:  Toast.CENTER);
-                      UpdateLeadLoader();
-                _upload();
-              }
-            })
+            IconButton(
+                icon: Icon(
+                  Icons.attach_file,
+                  size: MediaQuery.of(context).size.width / 18,
+                ),
+                onPressed: loadAssets),
+            IconButton(
+                icon: Icon(
+                  Icons.send_rounded,
+                  size: MediaQuery.of(context).size.width / 18,
+                ),
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    if (images.length != 0)
+                      Toast.show(
+                          "${'Please wait while we record your feedback'}",
+                          context,
+                          duration: Toast.LENGTH_LONG,
+                          gravity: Toast.CENTER);
+                    else if (images.length == 0)
+                      Toast.show(
+                          "${'Please wait while we record your feedback'}",
+                          context,
+                          duration: Toast.LENGTH_LONG,
+                          gravity: Toast.CENTER);
+                    UpdateLeadLoader();
+                    _upload();
+                  }
+                })
           ],
         ),
         drawer: Drawer(
           elevation: 0,
           child: Column(
             children: [
-              SizedBox(height: 50,),
+              SizedBox(
+                height: 50,
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
                 child: Container(
@@ -349,35 +426,41 @@ class _FeedbacksState extends State<Feedbacks> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width*0.2,
+                        width: MediaQuery.of(context).size.width * 0.2,
                         height: 100,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              image: NetworkImage('https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-                              fit: BoxFit.fill
-                          ),
+                              image: NetworkImage(
+                                  'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+                              fit: BoxFit.fill),
                           border: Border.all(
                             color: Colors.white,
                             width: 2.0,
                           ),
                         ),
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text(comapnyname,
+                          Text(
+                            comapnyname,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: MediaQuery.of(context).size.width/20
-                            ),),
-                          Text(username,
+                                fontSize:
+                                    MediaQuery.of(context).size.width / 20),
+                          ),
+                          Text(
+                            username,
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontSize: MediaQuery.of(context).size.width/30
-                            ),),
+                                fontSize:
+                                    MediaQuery.of(context).size.width / 30),
+                          ),
                         ],
                       ),
                       Spacer(),
@@ -396,88 +479,124 @@ class _FeedbacksState extends State<Feedbacks> {
                 flex: 1,
                 child: ListView(children: [
                   ListTile(
-                    leading: Icon(Icons.home, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Home",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.home,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Home",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                            return Dashboard();
-                          }));
+                        return Dashboard();
+                      }));
                     },
                     // selected: true,
                     selectedTileColor: Colors.blue.withOpacity(0.5),
                     minVerticalPadding: 0,
                     enableFeedback: true,
-
                   ),
                   ListTile(
-                    leading: Icon(Icons.search, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Search Query",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.search,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Search Query",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                            return S_Query();
-                          }));
+                        return S_Query();
+                      }));
                     },
                     // selected: true,
                     selectedTileColor: Colors.blue.withOpacity(0.5),
                     minVerticalPadding: 0,
                     enableFeedback: true,
-
                   ),
                   ExpansionTile(
                     //initiallyExpanded: true,
                     maintainState: true,
-                    leading: Icon(Icons.people, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Leads",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.people,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Leads",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                         child: ListTile(
-                          leading: Icon(Icons.people, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
+                          leading: Icon(
+                            Icons.people,
+                            color: Colors.black,
+                            size: MediaQuery.of(context).size.width / 20,
+                          ),
                           //selected: true,
                           selectedTileColor: Colors.blue.withOpacity(0.5),
-                          title: Text("Assigned Leads",
-                            style: TextStyle(color: Colors.black,
-                                fontSize: MediaQuery.of(context).size.width/25,
-                                fontWeight: FontWeight.w300),),
+                          title: Text(
+                            "Assigned Leads",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize:
+                                    MediaQuery.of(context).size.width / 25,
+                                fontWeight: FontWeight.w300),
+                          ),
                           onTap: () {
                             Navigator.of(context).pop();
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {
-                                  return Leads();
-                                }));
+                              return Leads();
+                            }));
                           },
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                         child: ListTile(
-                          leading: Icon(Icons.people, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                          title: Text("Follow Ups",
-                            style: TextStyle(color: Colors.black,
-                                fontSize: MediaQuery.of(context).size.width/25,
-                                fontWeight: FontWeight.w300),),
+                          leading: Icon(
+                            Icons.people,
+                            color: Colors.black,
+                            size: MediaQuery.of(context).size.width / 20,
+                          ),
+                          title: Text(
+                            "Follow Ups",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize:
+                                    MediaQuery.of(context).size.width / 25,
+                                fontWeight: FontWeight.w300),
+                          ),
                           onTap: () {
                             Navigator.pop(context);
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {
-                                  return FollowUp();
-                                }));
+                              return FollowUp();
+                            }));
                           },
                         ),
-                      ),],
+                      ),
+                    ],
                   ),
                   /*ListTile(
                     leading: Icon(Icons.person, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
@@ -490,31 +609,45 @@ class _FeedbacksState extends State<Feedbacks> {
                     },
                   ),*/
                   ListTile(
-                    leading: Icon(Icons.contact_support, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Contact Us",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.contact_support,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Contact Us",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                            return Contactus();
-                          }));
+                        return Contactus();
+                      }));
                     },
-                      ),
+                  ),
                   ListTile(
-                    leading: Icon(Icons.admin_panel_settings_sharp, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Change Password",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.admin_panel_settings_sharp,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Change Password",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                            return ChangePass();
-                          }));
+                        return ChangePass();
+                      }));
                     },
                   ),
                   Padding(
@@ -535,11 +668,18 @@ class _FeedbacksState extends State<Feedbacks> {
                     },
                   ),*/
                   ListTile(
-                    leading: Icon(Icons.messenger, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Feedback",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.messenger,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Feedback",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     selected: true,
                     selectedTileColor: Colors.blue.withOpacity(0.5),
                     onTap: () {
@@ -547,42 +687,53 @@ class _FeedbacksState extends State<Feedbacks> {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.logout, color: Colors.black,size:MediaQuery.of(context).size.width/20,),
-                    title: Text("Log Out",
-                      style: TextStyle(color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.width/25,
-                          fontWeight: FontWeight.w300),),
+                    leading: Icon(
+                      Icons.logout,
+                      color: Colors.black,
+                      size: MediaQuery.of(context).size.width / 20,
+                    ),
+                    title: Text(
+                      "Log Out",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontWeight: FontWeight.w300),
+                    ),
                     onTap: () {
                       Navigator.of(context).pop();
                       Logout(context);
                     },
                   ),
-
                 ]),
               ),
               Align(
                 alignment: Alignment.center,
-                child: Text('Made with love',
+                child: Text(
+                  'Made with love',
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: MediaQuery.of(context).size.width/30,
-                  ),),
+                    fontSize: MediaQuery.of(context).size.width / 30,
+                  ),
+                ),
               ),
-
               Align(
                 alignment: Alignment.center,
-                child: Text('In India',
+                child: Text(
+                  'In India',
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: MediaQuery.of(context).size.width/30,
-                  ),),
+                    fontSize: MediaQuery.of(context).size.width / 30,
+                  ),
+                ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
             ],
           ),
         ),
         body: GestureDetector(
-          onVerticalDragEnd : (DragEndDetails details) {
+          onVerticalDragEnd: (DragEndDetails details) {
             _scaffoldKey.currentState.openDrawer();
           },
           child: Container(
@@ -590,23 +741,22 @@ class _FeedbacksState extends State<Feedbacks> {
               color: Colors.grey.withOpacity(0.2),
               height: MediaQuery.of(context).size.height,
               child: Container(
-                child:  Form(
+                child: Form(
                   key: _formKey,
                   child: Column(
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height/5,
+                        height: MediaQuery.of(context).size.height / 5,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          border:Border.all(
+                          border: Border.all(
                             color: Colors.grey.withOpacity(0.5),
                           ),
                           borderRadius: new BorderRadius.circular(0),
                         ),
                         child: Padding(
-                          padding:
-                          EdgeInsets.only(left: 15, right: 15, top: 0),
+                          padding: EdgeInsets.only(left: 15, right: 15, top: 0),
                           child: TextFormField(
                             maxLines: 5,
                             autocorrect: true,
@@ -614,51 +764,63 @@ class _FeedbacksState extends State<Feedbacks> {
                                 border: InputBorder.none,
                                 hintText: 'Enter Feedback',
                                 hintStyle: TextStyle(
-                                    color:Colors.black,
-                                    fontSize: MediaQuery.of(context).size.height/50,
-                                    fontWeight: FontWeight.w300
-                                )
-                            ),
-                            style: TextStyle(color:Colors.black),
+                                    color: Colors.black,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height / 50,
+                                    fontWeight: FontWeight.w300)),
+                            style: TextStyle(color: Colors.black),
                             controller: feedbackController,
                             validator: (value) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'Please Fill This Field To Continue';
                               }
                               return null;
                             },
                           ),
-                        ),),
-                      if(images.length == 0)Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height-MediaQuery.of(context).size.height/3.45,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border:Border.all(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                          borderRadius: new BorderRadius.circular(0),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Icon(Icons.file_copy_sharp, size: MediaQuery.of(context).size.width/3,
-                              color: Colors.grey.withOpacity(0.4),),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text('No files attatched',
-                                style: TextStyle(color: Colors.grey,
-                                    fontSize: MediaQuery.of(context).size.width/25),),
+                      ),
+                      if (images.length == 0)
+                        Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height -
+                                MediaQuery.of(context).size.height / 3.45,
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              border: Border.all(
+                                color: Colors.grey.withOpacity(0.5),
+                              ),
+                              borderRadius: new BorderRadius.circular(0),
                             ),
-                          ],
-                        ))
-                      else if(images.length != 0)Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Icon(
+                                  Icons.file_copy_sharp,
+                                  size: MediaQuery.of(context).size.width / 3,
+                                  color: Colors.grey.withOpacity(0.4),
+                                ),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'No files attatched',
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width /
+                                                25),
+                                  ),
+                                ),
+                              ],
+                            ))
+                      else if (images.length != 0)
+                        Container(
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height-MediaQuery.of(context).size.height/3.45,
+                          height: MediaQuery.of(context).size.height -
+                              MediaQuery.of(context).size.height / 3.45,
                           decoration: BoxDecoration(
                             color: Colors.transparent,
-                            border:Border.all(
+                            border: Border.all(
                               color: Colors.grey.withOpacity(0.5),
                             ),
                             borderRadius: new BorderRadius.circular(0),
@@ -667,7 +829,7 @@ class _FeedbacksState extends State<Feedbacks> {
                             padding: const EdgeInsets.all(8.0),
                             child: buildGridView(),
                           ),
-                      )
+                        )
                     ],
                   ),
                 ),

@@ -3,9 +3,8 @@ import 'dart:convert';
 import 'package:zoho_crm_clone/constants/constants.dart';
 
 Future Get_Leads_Type(String useruid, String clientt) async {
+  var uri = "$customurl/leads.php";
 
-  var uri = "${customurl}/leads.php";
-  
   final response = await http.post(uri, body: {
     'uid': useruid,
     'client': clientt,
@@ -18,14 +17,14 @@ Future Get_Leads_Type(String useruid, String clientt) async {
   //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyProfileClickedEvent);
 }
 
-Future Get_Leads(String useruid, String clientt, String stat_us, String start,
+Future Get_Leads(String useruid, String clientt, String statUs, String start,
     String end) async {
-  var uri = "${customurl}/leads.php";
+  var uri = "$customurl/leads.php";
   final response = await http.post(uri, body: {
     'uid': useruid,
     'client': clientt,
     'type': 'fetch_status_lead',
-    'status': stat_us,
+    'status': statUs,
     'i_start': start,
     'i_end': end
   }, headers: <String, String>{
@@ -41,7 +40,7 @@ Future Get_Leads_followup(
   String clientt,
   String lid,
 ) async {
-  var uri = "${customurl}/leads.php";
+  var uri = "$customurl/leads.php";
   final response = await http.post(uri, body: {
     'uid': useruid,
     'client': clientt,

@@ -1,17 +1,13 @@
 import 'dart:convert';
-import 'dart:ui';
 import 'package:http/http.dart' as http;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:zoho_crm_clone/api_models/fetch_followups.dart';
 import 'package:zoho_crm_clone/constants/constants.dart';
 import 'package:zoho_crm_clone/model/logout_model.dart';
-import 'package:zoho_crm_clone/screens/add_contacts.dart';
 import 'package:zoho_crm_clone/screens/add_followup.dart';
 import 'package:zoho_crm_clone/screens/add_leads.dart';
 import 'package:zoho_crm_clone/screens/change%20pass.dart';
@@ -304,7 +300,7 @@ class _DashboardState extends State<Dashboard> {
   // bool updatescreen = false;
 
   Future getupdate() async {
-    var uri = "${customurl}/version.php";
+    var uri = "$customurl/version.php";
     final response = await http.get(uri, headers: <String, String>{
       'Accept': 'application/json',
     });
@@ -1047,7 +1043,7 @@ class _DashboardState extends State<Dashboard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Follow ups for ${sday} ',
+                              'Follow ups for $sday ',
                               style: TextStyle(
                                   fontSize:
                                       MediaQuery.of(context).size.width / 25,
@@ -1166,7 +1162,7 @@ class _DashboardState extends State<Dashboard> {
                               width: 5,
                             ),
                             Text(
-                              '${syear}',
+                              '$syear',
                               style: TextStyle(
                                   fontSize:
                                       MediaQuery.of(context).size.width / 25,

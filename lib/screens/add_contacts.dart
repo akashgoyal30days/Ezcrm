@@ -1,12 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zoho_crm_clone/constants/constants.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'dashboard.dart';
-
 
 class AddContacts extends StatefulWidget {
   AddContacts({Key key, this.title}) : super(key: key);
@@ -28,35 +23,35 @@ class _AddContactsState extends State<AddContacts> {
     showCupertinoModalPopup(
         context: ctx,
         builder: (_) => Container(
-          height: 500,
-          color: Color.fromARGB(255, 255, 255, 255),
-          child: Column(
-            children: [
-              Container(
-                height: 400,
-                child: CupertinoDatePicker(
-                    initialDateTime: DateTime.now(),
-                    onDateTimeChanged: (val) {
-                      setState(() {
-                        _chosenDateTime = val;
-                      });
-                    }),
-              ),
+              height: 500,
+              color: Color.fromARGB(255, 255, 255, 255),
+              child: Column(
+                children: [
+                  Container(
+                    height: 400,
+                    child: CupertinoDatePicker(
+                        initialDateTime: DateTime.now(),
+                        onDateTimeChanged: (val) {
+                          setState(() {
+                            _chosenDateTime = val;
+                          });
+                        }),
+                  ),
 
-              // Close the modal
-              CupertinoButton(
-                child: Text('OK'),
-                onPressed: () => Navigator.of(ctx).pop(),
-              )
-            ],
-          ),
-        ));
+                  // Close the modal
+                  CupertinoButton(
+                    child: Text('OK'),
+                    onPressed: () => Navigator.of(ctx).pop(),
+                  )
+                ],
+              ),
+            ));
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
         if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
@@ -73,25 +68,30 @@ class _AddContactsState extends State<AddContacts> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.black,Colors.indigo,],
+                  colors: [
+                    Colors.black,
+                    Colors.indigo,
+                  ],
                 ),
               ),
             ),
-            title: Text('Add Contact',
-              style: TextStyle(fontSize: MediaQuery.of(context).size.width/20,
-                  fontWeight: FontWeight.w300),),
+            title: Text(
+              'Add Contact',
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width / 20,
+                  fontWeight: FontWeight.w300),
+            ),
             centerTitle: false,
-            leading: IconButton(icon: Icon(Icons.west_sharp), onPressed: (){
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) {
+            leading: IconButton(
+                icon: Icon(Icons.west_sharp),
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) {
                     return Dashboard();
                   }));
-            }),
-            actions: [
-              IconButton(icon: Icon(Icons.check), onPressed: (){})
-            ],
+                }),
+            actions: [IconButton(icon: Icon(Icons.check), onPressed: () {})],
           ),
-
           body: Container(
             color: Colors.grey.withOpacity(0.2),
             child: ListView(
@@ -101,8 +101,8 @@ class _AddContactsState extends State<AddContacts> {
                   child: Row(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height/17.2,
-                        width: MediaQuery.of(context).size.width/2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         color: Colors.grey.withOpacity(0.5),
                         child: Center(
                           child: Padding(
@@ -112,13 +112,31 @@ class _AddContactsState extends State<AddContacts> {
                               children: [
                                 Row(
                                   children: [
-                                    Text('Name',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
-                                    Text('*',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22,
-                                      color: Colors.red),),
-                                    Text(' : ',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
+                                    Text(
+                                      'Name',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22),
+                                    ),
+                                    Text(
+                                      '*',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22,
+                                          color: Colors.red),
+                                    ),
+                                    Text(
+                                      ' : ',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -127,30 +145,31 @@ class _AddContactsState extends State<AddContacts> {
                         ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width- MediaQuery.of(context).size.width/2.5,
-                        height: MediaQuery.of(context).size.height/17.2,
+                        width: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).size.width / 2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          border:Border.all(
+                          border: Border.all(
                             color: Colors.grey.withOpacity(0.5),
                           ),
                           borderRadius: new BorderRadius.circular(0),
                         ),
                         child: Padding(
-                          padding:
-                          EdgeInsets.only(left: 15, right: 15, top: 0),
+                          padding: EdgeInsets.only(left: 15, right: 15, top: 0),
                           child: TextFormField(
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Name',
                                 hintStyle: TextStyle(
-                                    color:Colors.black,
-                                    fontSize: MediaQuery.of(context).size.height/50,
-                                    fontWeight: FontWeight.w300
-                                )
-                            ),
-                            style: TextStyle(color:Colors.black),),
-                        ),),
+                                    color: Colors.black,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height / 50,
+                                    fontWeight: FontWeight.w300)),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -159,8 +178,8 @@ class _AddContactsState extends State<AddContacts> {
                   child: Row(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height/17.2,
-                        width: MediaQuery.of(context).size.width/2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         color: Colors.grey.withOpacity(0.5),
                         child: Center(
                           child: Padding(
@@ -170,44 +189,64 @@ class _AddContactsState extends State<AddContacts> {
                               children: [
                                 Row(
                                   children: [
-                                    Text('Email',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
-                                    Text('*',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22,
-                                          color: Colors.red),),
-                                    Text(' : ',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
+                                    Text(
+                                      'Email',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22),
+                                    ),
+                                    Text(
+                                      '*',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22,
+                                          color: Colors.red),
+                                    ),
+                                    Text(
+                                      ' : ',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22),
+                                    ),
                                   ],
-                                ),],
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width- MediaQuery.of(context).size.width/2.5,
-                        height: MediaQuery.of(context).size.height/17.2,
+                        width: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).size.width / 2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          border:Border.all(
+                          border: Border.all(
                             color: Colors.grey.withOpacity(0.5),
                           ),
                           borderRadius: new BorderRadius.circular(0),
                         ),
                         child: Padding(
-                          padding:
-                          EdgeInsets.only(left: 15, right: 15, top: 0),
+                          padding: EdgeInsets.only(left: 15, right: 15, top: 0),
                           child: TextFormField(
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Email',
                                 hintStyle: TextStyle(
-                                    color:Colors.black,
-                                    fontSize: MediaQuery.of(context).size.height/50,
-                                    fontWeight: FontWeight.w300
-                                )
-                            ),
-                            style: TextStyle(color:Colors.black),),
-                        ),),
+                                    color: Colors.black,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height / 50,
+                                    fontWeight: FontWeight.w300)),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -216,8 +255,8 @@ class _AddContactsState extends State<AddContacts> {
                   child: Row(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height/17.2,
-                        width: MediaQuery.of(context).size.width/2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         color: Colors.grey.withOpacity(0.5),
                         child: Center(
                           child: Padding(
@@ -227,44 +266,64 @@ class _AddContactsState extends State<AddContacts> {
                               children: [
                                 Row(
                                   children: [
-                                    Text('Phone',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
-                                    Text('*',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22,
-                                          color: Colors.red),),
-                                    Text(' : ',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
+                                    Text(
+                                      'Phone',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22),
+                                    ),
+                                    Text(
+                                      '*',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22,
+                                          color: Colors.red),
+                                    ),
+                                    Text(
+                                      ' : ',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22),
+                                    ),
                                   ],
-                                ),],
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width- MediaQuery.of(context).size.width/2.5,
-                        height: MediaQuery.of(context).size.height/17.2,
+                        width: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).size.width / 2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          border:Border.all(
+                          border: Border.all(
                             color: Colors.grey.withOpacity(0.5),
                           ),
                           borderRadius: new BorderRadius.circular(0),
                         ),
                         child: Padding(
-                          padding:
-                          EdgeInsets.only(left: 15, right: 15, top: 0),
+                          padding: EdgeInsets.only(left: 15, right: 15, top: 0),
                           child: TextFormField(
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Phone',
                                 hintStyle: TextStyle(
-                                    color:Colors.black,
-                                    fontSize: MediaQuery.of(context).size.height/50,
-                                    fontWeight: FontWeight.w300
-                                )
-                            ),
-                            style: TextStyle(color:Colors.black),),
-                        ),),
+                                    color: Colors.black,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height / 50,
+                                    fontWeight: FontWeight.w300)),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -273,8 +332,8 @@ class _AddContactsState extends State<AddContacts> {
                   child: Row(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height/17.2,
-                        width: MediaQuery.of(context).size.width/2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         color: Colors.grey.withOpacity(0.5),
                         child: Center(
                           child: Padding(
@@ -284,44 +343,64 @@ class _AddContactsState extends State<AddContacts> {
                               children: [
                                 Row(
                                   children: [
-                                    Text('Company',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
-                                    Text('*',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22,
-                                          color: Colors.red),),
-                                    Text(' : ',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
+                                    Text(
+                                      'Company',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22),
+                                    ),
+                                    Text(
+                                      '*',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22,
+                                          color: Colors.red),
+                                    ),
+                                    Text(
+                                      ' : ',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22),
+                                    ),
                                   ],
-                                ),],
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width- MediaQuery.of(context).size.width/2.5,
-                        height: MediaQuery.of(context).size.height/17.2,
+                        width: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).size.width / 2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          border:Border.all(
+                          border: Border.all(
                             color: Colors.grey.withOpacity(0.5),
                           ),
                           borderRadius: new BorderRadius.circular(0),
                         ),
                         child: Padding(
-                          padding:
-                          EdgeInsets.only(left: 15, right: 15, top: 0),
+                          padding: EdgeInsets.only(left: 15, right: 15, top: 0),
                           child: TextFormField(
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Company',
                                 hintStyle: TextStyle(
-                                    color:Colors.black,
-                                    fontSize: MediaQuery.of(context).size.height/50,
-                                    fontWeight: FontWeight.w300
-                                )
-                            ),
-                            style: TextStyle(color:Colors.black),),
-                        ),),
+                                    color: Colors.black,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height / 50,
+                                    fontWeight: FontWeight.w300)),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -330,8 +409,8 @@ class _AddContactsState extends State<AddContacts> {
                   child: Row(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height/17.2,
-                        width: MediaQuery.of(context).size.width/2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         color: Colors.grey.withOpacity(0.5),
                         child: Center(
                           child: Padding(
@@ -341,44 +420,64 @@ class _AddContactsState extends State<AddContacts> {
                               children: [
                                 Row(
                                   children: [
-                                    Text('Designation',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
-                                    Text('*',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22,
-                                          color: Colors.red),),
-                                    Text(' : ',
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
+                                    Text(
+                                      'Designation',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22),
+                                    ),
+                                    Text(
+                                      '*',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22,
+                                          color: Colors.red),
+                                    ),
+                                    Text(
+                                      ' : ',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              22),
+                                    ),
                                   ],
-                                ),],
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width- MediaQuery.of(context).size.width/2.5,
-                        height: MediaQuery.of(context).size.height/17.2,
+                        width: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).size.width / 2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          border:Border.all(
+                          border: Border.all(
                             color: Colors.grey.withOpacity(0.5),
                           ),
                           borderRadius: new BorderRadius.circular(0),
                         ),
                         child: Padding(
-                          padding:
-                          EdgeInsets.only(left: 15, right: 15, top: 0),
+                          padding: EdgeInsets.only(left: 15, right: 15, top: 0),
                           child: TextFormField(
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Designation',
                                 hintStyle: TextStyle(
-                                    color:Colors.black,
-                                    fontSize: MediaQuery.of(context).size.height/50,
-                                    fontWeight: FontWeight.w300
-                                )
-                            ),
-                            style: TextStyle(color:Colors.black),),
-                        ),),
+                                    color: Colors.black,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height / 50,
+                                    fontWeight: FontWeight.w300)),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -387,8 +486,8 @@ class _AddContactsState extends State<AddContacts> {
                   child: Row(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height/17.2,
-                        width: MediaQuery.of(context).size.width/2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         color: Colors.grey.withOpacity(0.5),
                         child: Center(
                           child: Padding(
@@ -396,38 +495,44 @@ class _AddContactsState extends State<AddContacts> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Text('Company URL: ',
-                                  style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
+                                Text(
+                                  'Company URL: ',
+                                  style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.width /
+                                              22),
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width- MediaQuery.of(context).size.width/2.5,
-                        height: MediaQuery.of(context).size.height/17.2,
+                        width: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).size.width / 2.5,
+                        height: MediaQuery.of(context).size.height / 17.2,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          border:Border.all(
+                          border: Border.all(
                             color: Colors.grey.withOpacity(0.5),
                           ),
                           borderRadius: new BorderRadius.circular(0),
                         ),
                         child: Padding(
-                          padding:
-                          EdgeInsets.only(left: 15, right: 15, top: 0),
+                          padding: EdgeInsets.only(left: 15, right: 15, top: 0),
                           child: TextFormField(
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Company URL',
                                 hintStyle: TextStyle(
-                                    color:Colors.black,
-                                    fontSize: MediaQuery.of(context).size.height/50,
-                                    fontWeight: FontWeight.w300
-                                )
-                            ),
-                            style: TextStyle(color:Colors.black),),
-                        ),),
+                                    color: Colors.black,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height / 50,
+                                    fontWeight: FontWeight.w300)),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -436,8 +541,8 @@ class _AddContactsState extends State<AddContacts> {
                   child: Row(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height/7.5,
-                        width: MediaQuery.of(context).size.width/2.5,
+                        height: MediaQuery.of(context).size.height / 7.5,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         color: Colors.grey.withOpacity(0.5),
                         child: Center(
                           child: Padding(
@@ -445,26 +550,31 @@ class _AddContactsState extends State<AddContacts> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Text('Address : ',
-                                  style: TextStyle(fontSize: MediaQuery.of(context).size.width/22),),
+                                Text(
+                                  'Address : ',
+                                  style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.width /
+                                              22),
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width- MediaQuery.of(context).size.width/2.5,
-                        height: MediaQuery.of(context).size.height/7.5,
+                        width: MediaQuery.of(context).size.width -
+                            MediaQuery.of(context).size.width / 2.5,
+                        height: MediaQuery.of(context).size.height / 7.5,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          border:Border.all(
+                          border: Border.all(
                             color: Colors.grey.withOpacity(0.5),
                           ),
                           borderRadius: new BorderRadius.circular(0),
                         ),
                         child: Padding(
-                          padding:
-                          EdgeInsets.only(left: 15, right: 15, top: 0),
+                          padding: EdgeInsets.only(left: 15, right: 15, top: 0),
                           child: TextFormField(
                             maxLines: 5,
                             autocorrect: true,
@@ -472,20 +582,20 @@ class _AddContactsState extends State<AddContacts> {
                                 border: InputBorder.none,
                                 hintText: 'Address',
                                 hintStyle: TextStyle(
-                                    color:Colors.black,
-                                    fontSize: MediaQuery.of(context).size.height/50,
-                                    fontWeight: FontWeight.w300
-                                )
-                            ),
-                            style: TextStyle(color:Colors.black),),
-                        ),),
+                                    color: Colors.black,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height / 50,
+                                    fontWeight: FontWeight.w300)),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ],
             ),
-          )
-      ),
+          )),
     );
   }
 }

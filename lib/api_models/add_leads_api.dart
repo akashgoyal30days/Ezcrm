@@ -16,7 +16,7 @@ Future addleads(
     String cname,
     String uuid,
     String rdate) async {
-  var leadsuri = "${customurl}/leads.php";
+  var leadsuri = "$customurl/leads.php";
   final response = await http.post(leadsuri, body: {
     'type': 'add',
     'prods': product,

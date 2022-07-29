@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:intl/intl.dart';
@@ -274,7 +272,7 @@ class _S_QueryState extends State<S_Query> {
           myleaddatalist = mydata['leads'].toList();
         });
         if (debug == 'yes') {
-          print('lead- ${myleaddatalist}');
+          print('lead- $myleaddatalist');
         }
       }
     }
@@ -422,7 +420,7 @@ class _S_QueryState extends State<S_Query> {
         });
         Showfollowdet();
         if (debug == 'yes') {
-          print('follow- ${myleadfollowdetails}');
+          print('follow- $myleadfollowdetails');
         }
       }
     }
@@ -3070,7 +3068,7 @@ class _S_QueryState extends State<S_Query> {
       }
       if (convertedDatatoJson['status'] == true) {
         await launch(
-            "https://wa.me/+91${userphn}?text=${convertedDatatoJson['message']['message']}");
+            "https://wa.me/+91$userphn?text=${convertedDatatoJson['message']['message']}");
         if (debug == 'yes') {
           print(convertedDatatoJson['message']['message']);
         }
@@ -3177,7 +3175,7 @@ class _S_QueryState extends State<S_Query> {
                         alignment: Alignment.center,
                         child: Center(
                           child: Text(
-                            '(${number})',
+                            '($number)',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize:

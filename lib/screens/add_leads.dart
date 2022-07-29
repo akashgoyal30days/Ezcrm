@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:zoho_crm_clone/api_models/add_leads_api.dart';
 import 'package:zoho_crm_clone/constants/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:zoho_crm_clone/screens/Leads.dart';
-import 'package:zoho_crm_clone/screens/login.dart';
 import 'dashboard.dart';
 
 class AddLeads extends StatefulWidget {
@@ -169,7 +166,7 @@ class _AddLeadsState extends State<AddLeads> {
 
   List expnewdatacity;
   Future fetchcity() async {
-    var urii = "${customurl}/leads.php";
+    var urii = "$customurl/leads.php";
     final responseexp = await http.post(urii, body: {
       'uid': userid,
       'client': clientname,
@@ -537,7 +534,6 @@ class _AddLeadsState extends State<AddLeads> {
                       }
                     }
                   }
-                  ;
                 },
               )
             ],

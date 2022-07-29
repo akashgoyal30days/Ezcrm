@@ -1,12 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:zoho_crm_clone/api_models/change_password%20api.dart';
 import 'package:zoho_crm_clone/constants/constants.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'dashboard.dart';
 
@@ -89,10 +86,7 @@ class _ChangePassState extends State<ChangePass> {
 
   final _formKey = GlobalKey<FormState>();
   Future UpdateLeadLoader() {
-
-    setState(() {
-
-    });
+    setState(() {});
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(0.0)),
